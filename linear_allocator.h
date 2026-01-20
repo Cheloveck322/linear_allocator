@@ -8,14 +8,14 @@ class LinearAllocator
 {
 public: 
     LinearAllocator();
-    LinearAllocator(std::size_t size);
-    void* allocate(std::size_t size);
+    LinearAllocator(size_t size);
+    void* allocate(size_t size);
     void reset();
 
 private:
-    std::size_t _size;
-    std::size_t _busy;
-    std::size_t* _buffer;
+    size_t _size;
+    size_t _busy;
+    size_t* _buffer;
 };
 
 #endif

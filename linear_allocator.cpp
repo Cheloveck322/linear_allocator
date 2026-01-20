@@ -3,21 +3,21 @@
 LinearAllocator::LinearAllocator():
     _size{ 10 }, _busy{}, _buffer{}
 {
-    _buffer = reinterpret_cast<std::size_t*>(malloc(_size * sizeof(std::size_t)));
+    _buffer = (size_t*)(malloc(_size));
 }
 
-LinearAllocator::LinearAllocator(std::size_t size):
+LinearAllocator::LinearAllocator(size_t size):
     _size{ size }, _busy{}, _buffer{}
 {
-    _buffer = reinterpret_cast<std::size_t*>(malloc(_size * sizeof(std::size_t)));
+    _buffer = (size_t*)(malloc(_size));
 }
 
-void* LinearAllocator::allocate(std::size_t size)
+void* LinearAllocator::allocate(size_t size)
 {
     _busy += size;
     if (_busy > _size)
         return nullptr;
-    return reinterpret_cast<void*>(_busy);
+    return (void*)(_busy);
 }
 
 void LinearAllocator::reset()
