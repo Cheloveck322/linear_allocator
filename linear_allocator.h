@@ -6,16 +6,21 @@
 
 class LinearAllocator
 {
-public: 
+public:
     LinearAllocator();
     LinearAllocator(size_t size);
+    ~LinearAllocator();
+    
+    LinearAllocator(const LinearAllocator&) = delete;
+    LinearAllocator& operator=(const LinearAllocator&) = delete;
+
     void* allocate(size_t size);
     void reset();
 
 private:
-    size_t _size;
-    size_t _busy;
-    size_t* _buffer;
+    char* _current_pos;
+    char* _buffer;
+    size_t _total_size;
 };
 
 #endif
